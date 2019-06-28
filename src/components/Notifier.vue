@@ -8,13 +8,13 @@
         multi-line
         vertical
        >
-      <div v-for="(notice, idx) in currentNotices" :key="idx" >
-        <span role="alert"
-           class="notice"
-           :class="notice.type"
-           v-html="notice.content"
-        ></span>
-      </div>
+      <v-card-text v-for="(notice, idx) in currentNotices" :key="idx"
+         :class="notice.type"
+         class="display-1"
+         pa-4
+         role="alert"
+         v-html="notice.content" >
+      </v-card-text>
       <v-btn flat icon
         aria-label="Clear the current application notice"
         @click.native="showNextNotice()"

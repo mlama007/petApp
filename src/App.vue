@@ -34,16 +34,19 @@
         </div>
       </v-container>
     </v-content>
+    <notifier></notifier>
   </v-app>
 </template>
 
 <script>
 import axios from "axios";
 import Dog from "./components/Dog";
+import Notifier from "./components/Notifier";
 
 export default {
   components: {
-    appDog: Dog
+    appDog: Dog,
+    notifier: Notifier
   },
   data() {
     return {
@@ -54,7 +57,7 @@ export default {
   computed: {
     isAlreadyInFavorites() {
       return this.favoriteDogs.indexOf(this.currentDogLink) > -1;
-    }
+    },
   },
   methods: {
     loadNewDog() {
@@ -69,6 +72,7 @@ export default {
     },
     removeFromFavorites(index) {
       this.favoriteDogs.splice(index, 1);
+      this.$root.$emit('app-error', `Oh NO! You're a terrible Human Being.`);
     }
   },
   created() {

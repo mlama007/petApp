@@ -65,6 +65,7 @@ export default {
 },
     addToFavorites() {
       this.favoriteDogs.push(this.currentDogLink);
+      this.$root.$emit('app-info', `So exciting! Ready to adopt?`);
     },
     removeFromFavorites(index) {
       this.favoriteDogs.splice(index, 1);

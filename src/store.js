@@ -30,6 +30,10 @@ export default new Vuex.Store({
       }
       state.currentNotice = state.notices.shift();
     },
+    resetNotices(state) {
+      state.notices = [];
+      state.currentNotice = null;
+    }
   },
   actions: {
     queueNotice({ commit, state }, payload) {
@@ -41,5 +45,8 @@ export default new Vuex.Store({
     showNextNotice({ commit }) {
       commit('notify');
     },
+    resetNotices({ commit }) {
+      commit('resetNotices');
+    }
   }
 })

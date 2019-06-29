@@ -14,10 +14,10 @@ new Vue({
   store,
   render: h => h(App),
   methods: {
-    ...mapActions(['queueNotice'])
+    ...mapActions(['queueNotice', 'resetNotices'])
   },
   beforeMount() {
-    this.$on('app-error', (message) => { this.queueNotice({type: 'error', content: message});});
+    this.$on('app-error', (message) => { this.resetNotices(); this.queueNotice({type: 'error', content: message});});
     this.$on('app-info', (message) => { this.queueNotice({type: 'info', content: message});});
   }
 }).$mount('#app')

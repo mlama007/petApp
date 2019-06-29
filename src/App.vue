@@ -62,7 +62,7 @@ export default {
   methods: {
     loadNewDog() {
         this.currentDogLink = "";
-        axios.get("https://dog.ceo/api/reeds/image/random").then(response => {
+        axios.get("https://dog.ceo/api/breeds/image/random").then(response => {
             this.currentDogLink = response.data.message;
         }).catch((error) => {
             if (error.response) {

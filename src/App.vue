@@ -61,18 +61,27 @@ export default {
   },
   methods: {
     loadNewDog() {
-  this.currentDogLink = "";
-  axios.get("https://dog.ceo/api/breeds/image/random").then(response => {
-    this.currentDogLink = response.data.message;
-  });
-},
+        this.currentDogLink = "";
+        axios.get("https://dog.ceo/api/reeds/image/random").then(response => {
+            this.currentDogLink = response.data.message;
+        }).catch((error) => {
+            if (error.response) {
+                return this.$root.$emit('app-error', `Dogs could not be fetched! Server responded with code ${error.response.status}`);
+            }
+            if (error.request) {
+                return this.$root.$emit('app-error', 'Dogs could not be fetched! Server was unresponsive.');
+            }
+            return this.$root.$emit('app-error', `Dogs could not be fetched due to client error: ${error.message}`);
+        });
+    },
     addToFavorites() {
       this.favoriteDogs.push(this.currentDogLink);
-      this.$root.$emit('app-info', `So exciting! Ready to adopt?`);
+      const breed = this.currentDogLink.match(/breeds\/([^/]*)/)[1];
+      this.$root.$emit('app-info', `So exciting! Ready to adopt a ${breed}?`);
     },
     removeFromFavorites(index) {
       this.favoriteDogs.splice(index, 1);
-      this.$root.$emit('app-error', `Oh NO! You're a terrible Human Being.`);
+      this.$root.$emit('app-error', `Oh NO! You're a terrible Human Being!`);
     }
   },
   created() {

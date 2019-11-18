@@ -6,7 +6,7 @@ import './registerServiceWorker'
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 
-Vue.use(Vuetify);
+srikrisha tours and travels
 Vue.config.productionTip = false
 
 new Vue({
